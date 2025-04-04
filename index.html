@@ -4,6 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>OCR desde PDF</title>
+  <style>
+    .loader {
+    width: 16px;
+    height: 16px;
+    border: 3px solid #000000;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
+  </style>
 </head>
 <body>
   <h2>Extraer texto de imagen dentro de un PDF</h2>
@@ -29,7 +50,8 @@
       }
 
       procesarBtn.disabled = true;
-      procesarBtn.textContent = "Cargando...";
+      procesarBtn.innerHTML = '<span class="loader"></span>';
+    //   procesarBtn.textContent = 'Cargando...';
       resultadoDiv.innerHTML = "";
       textoExtraido = "";
 
