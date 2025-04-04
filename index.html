@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OCR desde PDF</title>
+</head>
+<body>
+  <h2>Extraer texto de imagen dentro de un PDF</h2>
+  <input type="file" id="pdfInput" accept="application/pdf" />
+  <button id="procesarBtn" onclick="procesarPDF()">Procesar</button>
+
+  <div id="resultadoOCR" style="margin-top: 20px;"></div>
+  <canvas id="pdfCanvas" style="display: none;"></canvas>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tesseract.js/4.0.2/tesseract.min.js"></script>
+  <script>
+    let textoExtraido = "";
+
+    async function procesarPDF() {
+      const fileInput = document.getElementById("pdfInput");
+      const procesarBtn = document.getElementById("procesarBtn");
+      const resultadoDiv = document.getElementById("resultadoOCR");
+
+      if (!fileInput.files.length) {
+        alert("Por favor, selecciona un PDF.");
+        return;
+      }
+
+      procesarBtn.disabled = true;
+      procesarBtn.textContent = "Cargando...";
+      resultadoDiv.innerHTML = "";
+      textoExtraido = "";
+
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+
+      reader.onload = async function () {
+        const typedarray = new Uint8Array(reader.result);
+        const pdf = await pdfjsLib.getDocument({ data: typedarray }).promise;
+        const page = await pdf.getPage(1);
+
+        const scale = 2;
+        const viewport = page.getViewport({ scale });
+        const canvas = document.getElementById("pdfCanvas");
+        const context = canvas.getContext("2d");
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+
+        await page.render({ canvasContext: context, viewport }).promise;
+
+        const imageDataURL = canvas.toDataURL("image/png");
+
+        Tesseract.recognize(imageDataURL, 'spa', {
+          logger: (m) => console.log(m)
+        }).then(({ data: { text } }) => {
+          textoExtraido = text;
+          console.log("Texto extraído:", textoExtraido);
+          mostrarDatosExtraidos(textoExtraido);
+        }).finally(() => {
+          procesarBtn.disabled = false;
+          procesarBtn.textContent = "Procesar";
+        });
+      };
+
+      reader.readAsArrayBuffer(file);
+    }
+
+    function mostrarDatosExtraidos(texto) {
+      const resultadoDiv = document.getElementById("resultadoOCR");
+
+      const extraerDato = (regex) => {
+        const match = texto.match(regex);
+        return match ? match[1].trim().replace(/\s+/g, ' ') : "No encontrado";
+      };
+
+      const tipo = extraerDato(/Tipo[:\s]*([0-9A-Z\- ]{5,})/i);
+      const modelo = extraerDato(/Modelo[:\s]*([0-9A-Z\-\/\.\s]{5,})/i);
+      const marca = extraerDato(/Marca[:\s]*([0-9A-Z\- ]{3,})/i);
+      const anio = extraerDato(/(Modelo\s+Año|Año)\s*[:\-]?\s*([0-9]{4})/i);
+      const motor = extraerDato(/Nro\.?,?\s*Motor[:\s\-]*([A-Z0-9\*\- ]{5,})/i);
+      const chasis = extraerDato(/Nro\.?,?\s*Chasis[:\s\-]*([A-Z0-9\*\- ]{5,})/i);
+
+      resultadoDiv.innerHTML = `
+        <p><strong>Tipo:</strong> ${tipo}</p>
+        <p><strong>Modelo:</strong> ${modelo}</p>
+        <p><strong>Marca:</strong> ${marca}</p>
+        <p><strong>Año:</strong> ${anio}</p>
+        <p><strong>Motor Nro:</strong> ${motor}</p>
+        <p><strong>Chasis Nro:</strong> ${chasis}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
+
+
