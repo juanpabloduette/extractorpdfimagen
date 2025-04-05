@@ -99,13 +99,12 @@
 					return match ? match[1].trim().replace(/\s+/g, " ") : "No encontrado";
 				};
 
-				const tipo = extraerDato(/Tipo[:\s]*([0-9A-Z\- ]{5,})/i);
-				const modelo = extraerDato(/Modelo[:\s]*([0-9A-Z\-\/\.\s]{5,})/i);
-				const marca = extraerDato(/Marca[:\s]*([0-9A-Z\- ]{3,})/i);
-				// const anio = extraerDato(/(Modelo\s+Año|Año)\s*[:\-]?\s*([0-9]{4})/i);
-				const anio = extraerDato(/Modelo\s+Año\s*[:\-]?\s*([0-9]{4})/i);
-				const motor = extraerDato(/Nro\.?,?\s*Motor[:\s\-]*([A-Z0-9\*\- ]{5,})/i);
-				const chasis = extraerDato(/Nro\.?,?\s*Chasis[:\s\-]*([A-Z0-9\*\- ]{5,})/i);
+				const tipo = extraerDato(/Tipo[:\s]*([A-Z0-9\- ]{5,})/);
+				const modelo = extraerDato(/Modelo[:\s]*([A-Z0-9\-\/\.\s]{5,})/);
+				const marca = extraerDato(/Marca[:\s]*([A-Z0-9\- ]{3,})/);
+				const anio = extraerDato(/Modelo\s+Año\s*[:\-]?\s*([0-9]{4})/);
+				const motor = extraerDato(/Nro\.?,?\s*Motor[:\s\-]*([A-Z0-9\*\- ]{5,})/);
+				const chasis = extraerDato(/Nro\.?,?\s*Chasis[:\s\-]*([A-Z0-9\*\- ]{5,})/);
 
 				resultadoDiv.innerHTML = `
         <p><strong>Tipo:</strong> ${tipo}</p>
@@ -114,7 +113,39 @@
         <p><strong>Año:</strong> ${anio}</p>
         <p><strong>Motor Nro:</strong> ${motor}</p>
         <p><strong>Chasis Nro:</strong> ${chasis}</p>
+        <button id="copiarBtn" onclick="copiarAlPortapapeles()">Copiar</button>
       `;
+			}
+			function copiarAlPortapapeles() {
+				const btn = document.getElementById("copiarBtn");
+				const texto = textoExtraido;
+				const tipo = document
+					.querySelector("p:nth-child(1)")
+					.textContent.split(": ")[1];
+				const modelo = document
+					.querySelector("p:nth-child(2)")
+					.textContent.split(": ")[1];
+				const marca = document
+					.querySelector("p:nth-child(3)")
+					.textContent.split(": ")[1];
+				const anio = document
+					.querySelector("p:nth-child(4)")
+					.textContent.split(": ")[1];
+				const motor = document
+					.querySelector("p:nth-child(5)")
+					.textContent.split(": ")[1];
+				const chasis = document
+					.querySelector("p:nth-child(6)")
+					.textContent.split(": ")[1];
+
+				const textoCopiar = `${tipo}\n${modelo}\n${marca}\n${anio}\n${motor}\n${chasis}`;
+
+				navigator.clipboard.writeText(textoCopiar).then(() => {
+					btn.textContent = "¡Copiado!";
+					setTimeout(() => {
+						btn.textContent = "Copiar";
+					}, 1500);
+				});
 			}
 		</script>
 	</body>
