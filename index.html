@@ -5,10 +5,38 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>OCR desde PDF</title>
 		<style>
+			body {
+				font-family: Arial, sans-serif;
+				background-color: #1c1c3c;
+				color: #dfdfdf;
+			}
+			.version3 {
+				width: 100%;
+				max-width: 200px;
+			}
+
+			#procesarBtn,
+			#copiarBtn,
+			#pdfInput {
+				padding: 5px 10px;
+				background-color: transparent;
+				border-radius: 10px;
+				border: 1px solid #be00ff;
+				transition: all 0.2s ease;
+				margin: 5px;
+				min-width: 150px;
+				cursor: pointer;
+				color: #dfdfdf;
+			}
+			#procesarBtn:hover,
+			#copiarBtn:hover {
+				background-color: #be00ff;
+				color: #1c1c3c;
+			}
 			.loader {
 				width: 16px;
 				height: 16px;
-				border: 3px solid #000000;
+				border: 3px solid #c557ea;
 				border-bottom-color: transparent;
 				border-radius: 50%;
 				display: inline-block;
@@ -28,6 +56,7 @@
 	</head>
 	<body>
 		<h2>Extraer texto de imagen dentro de un PDF</h2>
+		<img src="version3.png" alt="version3" class="version3" /> <br />
 		<input type="file" id="pdfInput" accept="application/pdf" />
 		<button id="procesarBtn" onclick="procesarPDF()">Procesar</button>
 
