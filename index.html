@@ -5,13 +5,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Extractor de pdf imagen</title>
 		<style>
-			*{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        background-color: #1c1c3c;
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				background-color: #1c1c3c;
 				color: #dfdfdf;
 				display: flex;
 				justify-content: center;
@@ -23,7 +23,7 @@
 				margin: 0 auto;
 			}
 
-      header {
+			header {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
@@ -35,33 +35,33 @@
 				font-size: 12px;
 				margin-right: 10px;
 			}
-			header svg{
+			header svg {
 				margin-left: 10px;
 			}
-      .h2extraer{
-        margin: 3px;
-      }
-      .procesarbox{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+			.h2extraer {
+				margin: 3px;
+			}
+			.procesarbox {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
 
-      .noaceptados{
-        display: flex;
-      }
+			.noaceptados {
+				display: flex;
+			}
 			.version3,
-      .maquinaria,
-      .version1,
-      .versionpapelazul {
+			.maquinaria,
+			.version1,
+			.versionpapelazul {
 				width: 100%;
 				max-width: 130px;
-        margin: 2px;
+				margin: 2px;
 			}
-      #copiarBtn{
-        width: 100%;
-        max-width: 200px;
-      }
+			#copiarBtn {
+				width: 100%;
+				max-width: 200px;
+			}
 			#procesarBtn,
 			#copiarBtn,
 			#pdfInput {
@@ -72,10 +72,10 @@
 				transition: all 0.2s ease;
 				/* margin: 5px; */
 				min-width: 150px;
-        min-height: 33px;
+				min-height: 33px;
 				cursor: pointer;
 				color: #dfdfdf;
-        margin: 2px;
+				margin: 2px;
 			}
 			#procesarBtn:hover,
 			#copiarBtn:hover {
@@ -102,23 +102,23 @@
 				}
 			}
 
-      #resultadoOCR{
-        background-color: #2b2b5b;
-        padding: 10px;
-        border-radius: 15px;
-        width: 100%;
-        max-width: 600px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        margin: 0 auto;
-      }
-      #resultadoOCR p {
-        text-align: center;
-      }
+			#resultadoOCR {
+				background-color: #2b2b5b;
+				padding: 10px;
+				border-radius: 15px;
+				width: 100%;
+				max-width: 600px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				margin: 0 auto;
+			}
+			#resultadoOCR p {
+				text-align: center;
+			}
 
-      /* Estilos para el fondo oscuro de la modal */
+			/* Estilos para el fondo oscuro de la modal */
 			.modal {
 				display: none; /* Oculta la modal por defecto */
 				position: fixed;
@@ -172,7 +172,7 @@
 			}
 
 			/* Botón de abrir */
-			.open-modal-box{
+			.open-modal-box {
 				text-align: center;
 				margin: 0 0 10px 0;
 			}
@@ -196,14 +196,13 @@
 				background: #c557ea;
 			}
 
-			.open-modal svg{
+			.open-modal svg {
 				margin: 0 5px;
 			}
-
 		</style>
 	</head>
 	<body>
-    <header>
+		<header>
 			<div class="logo">
 				<a href="">
 					<svg
@@ -297,84 +296,82 @@
 			</div>
 		</header>
 		<h2 class="h2extraer">Extraer texto de imagen dentro de un PDF</h2>
-    <div class="open-modal-box">
-      <span class="open-modal"
-          ><svg
-            width="18px"
-            height="18px"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g
-              id="SVGRepo_tracerCarrier"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></g>
-            <g id="SVGRepo_iconCarrier">
-              <path
-                d="M4 19V6.2C4 5.0799 4 4.51984 4.21799 4.09202C4.40973 3.71569 4.71569 3.40973 5.09202 3.21799C5.51984 3 6.0799 3 7.2 3H16.8C17.9201 3 18.4802 3 18.908 3.21799C19.2843 3.40973 19.5903 3.71569 19.782 4.09202C20 4.51984 20 5.0799 20 6.2V17H6C4.89543 17 4 17.8954 4 19ZM4 19C4 20.1046 4.89543 21 6 21H20M9 7H15M9 11H15M19 17V21"
-                stroke="#ffffff"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></path>
-            </g>
-          </svg>
-          Instructivo de uso
-          <svg
-            width="18px"
-            height="18px"
-            viewBox="0 0 48 48"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-            <g
-              id="SVGRepo_tracerCarrier"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            ></g>
-            <g id="SVGRepo_iconCarrier">
-              <rect width="48" height="48" fill="white" fill-opacity="0.01"></rect>
-              <path
-                d="M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z"
-                fill="#be00ff"
-                stroke="#ffffff"
-                stroke-width="4"
-                stroke-linejoin="round"
-              ></path>
-              <path
-                d="M24.0083 12L24.0071 24.0088L32.4865 32.4882"
-                stroke="white"
-                stroke-width="4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></path>
-            </g>
-          </svg>
-          <span>1"</span>
-        </span>
-    </div>
-    
-    <div class="procesarbox">
-      <input type="file" id="pdfInput" accept="application/pdf" />
-		<button id="procesarBtn" onclick="procesarPDF()">Extraer datos</button>
-    </div>
-		
+		<div class="open-modal-box">
+			<span class="open-modal"
+				><svg
+					width="18px"
+					height="18px"
+					viewBox="0 0 24 24"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+					<g
+						id="SVGRepo_tracerCarrier"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					></g>
+					<g id="SVGRepo_iconCarrier">
+						<path
+							d="M4 19V6.2C4 5.0799 4 4.51984 4.21799 4.09202C4.40973 3.71569 4.71569 3.40973 5.09202 3.21799C5.51984 3 6.0799 3 7.2 3H16.8C17.9201 3 18.4802 3 18.908 3.21799C19.2843 3.40973 19.5903 3.71569 19.782 4.09202C20 4.51984 20 5.0799 20 6.2V17H6C4.89543 17 4 17.8954 4 19ZM4 19C4 20.1046 4.89543 21 6 21H20M9 7H15M9 11H15M19 17V21"
+							stroke="#ffffff"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						></path>
+					</g>
+				</svg>
+				Instructivo de uso
+				<svg
+					width="18px"
+					height="18px"
+					viewBox="0 0 48 48"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					<g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+					<g
+						id="SVGRepo_tracerCarrier"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					></g>
+					<g id="SVGRepo_iconCarrier">
+						<rect width="48" height="48" fill="white" fill-opacity="0.01"></rect>
+						<path
+							d="M24 44C35.0457 44 44 35.0457 44 24C44 12.9543 35.0457 4 24 4C12.9543 4 4 12.9543 4 24C4 35.0457 12.9543 44 24 44Z"
+							fill="#be00ff"
+							stroke="#ffffff"
+							stroke-width="4"
+							stroke-linejoin="round"
+						></path>
+						<path
+							d="M24.0083 12L24.0071 24.0088L32.4865 32.4882"
+							stroke="white"
+							stroke-width="4"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						></path>
+					</g>
+				</svg>
+				<span>1"</span>
+			</span>
+		</div>
 
-		<div id="resultadoOCR" style="margin-top: 20px; display: none;"></div>
+		<div class="procesarbox">
+			<input type="file" id="pdfInput" accept="application/pdf" />
+			<button id="procesarBtn" onclick="procesarPDF()">Extraer datos</button>
+		</div>
+
+		<div id="resultadoOCR" style="margin-top: 20px; display: none"></div>
 		<canvas id="pdfCanvas" style="display: none"></canvas>
 
-    <div id="myModal" class="modal">
+		<div id="myModal" class="modal">
 			<div class="modal-content">
 				<button class="close">&times;</button>
 				<h2>Instructivo de uso</h2>
-				        
-        <ul style="list-style-type: decimal">
-					
-          <li>
+
+				<ul style="list-style-type: decimal">
+					<li>
 						<p>
 							Formatos no permitidos <strong>título automotor pdf en imagen</strong>
 							<svg
@@ -444,12 +441,17 @@
 								</g>
 							</svg>
 						</p>
-            <div class="noaceptados">
-              <img src="version1.jpg" alt="version1" class="version1" /> <br />
-              <img src="versionpapelazul.jpg" alt="versionpapelazul" class="versionpapelazul" /> <br />
-              <img src="maquinaria.jpg" alt="maquinaria" class="maquinaria" /> <br />
-              <img src="version3.png" alt="version3" class="version3" /> <br />
-            </div>
+						<div class="noaceptados">
+							<img src="version1.jpg" alt="version1" class="version1" /> <br />
+							<img
+								src="versionpapelazul.jpg"
+								alt="versionpapelazul"
+								class="versionpapelazul"
+							/>
+							<br />
+							<img src="maquinaria.jpg" alt="maquinaria" class="maquinaria" /> <br />
+							<img src="version3.png" alt="version3" class="version3" /> <br />
+						</div>
 					</li>
 					<li>
 						<p>
@@ -523,19 +525,16 @@
 						</p>
 					</li>
 					<li>
-						<p>
-							Click en <strong>Extraer Datos</strong>
-						</p>
+						<p>Click en <strong>Extraer Datos</strong></p>
 					</li>
 					<li>
-						<p>
-							Click en <strong>Copiar Datos</strong>
-						</p>
+						<p>Click en <strong>Copiar Datos</strong></p>
 					</li>
-					
+
 					<li>
 						<p>
-							En el archivo excel de armado vehículos y/o motos en la Hoja1, <br> posicionar en la celda B6 y pegar 
+							En el archivo excel de armado vehículos y/o motos en la Hoja1, <br />
+							posicionar en la celda B6 y pegar
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								width="100"
@@ -581,12 +580,15 @@
 							</svg>
 						</p>
 					</li>
-          <li>
+					<li>
 						<p>
-							<strong>Chequear manualmente todos los caracteres extraidos por la aplicación</strong>
+							<strong
+								>Chequear manualmente todos los caracteres extraidos por la
+								aplicación</strong
+							>
 						</p>
 					</li>
-					
+
 					<li>
 						<p>
 							Clickear
@@ -697,10 +699,8 @@
 					return;
 				}
 
-				
 				procesarBtn.innerHTML = '<span class="loader"></span>';
-        procesarBtn.disabled = true;
-				//   procesarBtn.textContent = 'Cargando...';
+				procesarBtn.disabled = true;
 				resultadoDiv.innerHTML = "";
 				textoExtraido = "";
 
@@ -732,7 +732,6 @@
 							mostrarDatosExtraidos(textoExtraido);
 						})
 						.finally(() => {
-							// procesarBtn.disabled = false;
 							procesarBtn.textContent = "Listo";
 						});
 				};
@@ -748,30 +747,37 @@
 					return match ? match[1].trim().replace(/\s+/g, " ") : "No encontrado";
 				};
 
-			  const tipo = extraerDato(/Tipo[:\s\-]*[0-9]{1,3}-\s*([A-Z0-9\/\-\s]+?)(?=\s*Mca\b|[^A-Z0-9\/\-\s]|$)/);
-        const modelo = extraerDato(/Modelo[:\s]*[0-9\-]*\s*([A-Z0-9\/\.\s]{3,})/);
-        const marca = extraerDato(/Marca[:\s]*[0-9\-]*\s*([A-Z ]{2,})/);
+				const tipo = extraerDato(
+					/Tipo[:\s\-]*[0-9]{1,3}-\s*([A-Z0-9\/\-\s]+?)(?=\s*Mca\b|[^A-Z0-9\/\-\s]|$)/
+				);
+				const modelo = extraerDato(/Modelo[:\s]*[0-9\-]*\s*([A-Z0-9\/\.\s]{3,})/);
+				const marca = extraerDato(/Marca[:\s]*[0-9\-]*\s*([A-Z ]{2,})/);
 				const anio = extraerDato(/Modelo\s+Año\s*[:\-]?\s*([0-9]{4})/);
 				const motor = extraerDato(/Nro\.?,?\s*Motor[:\s\-]*([A-Z0-9\*\- ]{5,})/);
-        const chasis = extraerDato(
-          /Nro\.?,?\s*Chasis[:\s\-]*([A-Z0-9\*\- ]{5,})/i
-        ) !== "No encontrado"
-          ? extraerDato(/Nro\.?,?\s*Chasis[:\s\-]*([A-Z0-9\*\- ]{5,})/i)
-          : extraerDato(/Nro\.?,?\s*Cuadro[:\s\-]*([A-Z0-9\*\- ]{5,})/i);
-        resultadoDiv.style.display = "flex";
+				const chasis =
+					extraerDato(/Nro\.?,?\s*Chasis[:\s\-]*([A-Z0-9\*\- ]{5,})/i) !==
+					"No encontrado"
+						? extraerDato(/Nro\.?,?\s*Chasis[:\s\-]*([A-Z0-9\*\- ]{5,})/i)
+						: extraerDato(/Nro\.?,?\s*Cuadro[:\s\-]*([A-Z0-9\*\- ]{5,})/i);
+
+				const radicacionRaw = extraerDato(/Seccional\s+(.+?)\s+certifica/i);
+				const radicacion = radicacionRaw.replace(/[?ºo°]/gi, "°").toUpperCase();
+
+				resultadoDiv.style.display = "flex";
 				resultadoDiv.innerHTML = `
-        <p><strong>Tipo:</strong> ${tipo}</p>
-        <p><strong>Modelo:</strong> ${modelo}</p>
-        <p><strong>Marca:</strong> ${marca}</p>
-        <p><strong>Año:</strong> ${anio}</p>
-        <p><strong>Motor Nro:</strong> ${motor}</p>
-        <p><strong>Chasis Nro:</strong> ${chasis}</p>
-        <button id="copiarBtn" onclick="copiarAlPortapapeles()">Copiar datos</button>
-      `;
+				<p><strong>Tipo:</strong> ${tipo}</p>
+				<p><strong>Modelo:</strong> ${modelo}</p>
+				<p><strong>Marca:</strong> ${marca}</p>
+				<p><strong>Año:</strong> ${anio}</p>
+				<p><strong>Motor Nro:</strong> ${motor}</p>
+				<p><strong>Chasis Nro:</strong> ${chasis}</p>
+				<p><strong>Radicación:</strong> ${radicacion}</p>
+				<button id="copiarBtn" onclick="copiarAlPortapapeles()">Copiar datos</button>
+			  `;
 			}
+
 			function copiarAlPortapapeles() {
 				const btn = document.getElementById("copiarBtn");
-				const texto = textoExtraido;
 				const tipo = document
 					.querySelector("p:nth-child(1)")
 					.textContent.split(": ")[1];
@@ -790,57 +796,56 @@
 				const chasis = document
 					.querySelector("p:nth-child(6)")
 					.textContent.split(": ")[1];
+				const radicacion = document
+					.querySelector("p:nth-child(7)")
+					.textContent.split(": ")[1]
+					.toUpperCase();
 
-				const textoCopiar = `${tipo}\n${modelo}\n${marca}\n${anio}\n${motor}\n${chasis}`;
+				const textoCopiar = `${tipo}\n${modelo}\n${marca}\n${anio}\n${motor}\n${chasis}\n${radicacion}`;
 
 				navigator.clipboard.writeText(textoCopiar).then(() => {
 					btn.textContent = "¡Copiado!";
-
 					setTimeout(() => {
 						btn.textContent = "Copiar datos";
 					}, 1000);
 				});
 			}
 
-      // Obtener la fecha actual
-document.addEventListener("DOMContentLoaded", function () {
-    const fechadehoy = document.getElementById("fechadehoy");
+			// Obtener la fecha actual
+			document.addEventListener("DOMContentLoaded", function () {
+				const fechadehoy = document.getElementById("fechadehoy");
 
-    const opciones = {
-        weekday: "long",
-        day: "numeric",
-        month: "long",
-        year: "numeric",
-    };
-    const fecha = new Date().toLocaleDateString("es-ES", opciones);
+				const opciones = {
+					weekday: "long",
+					day: "numeric",
+					month: "long",
+					year: "numeric",
+				};
+				const fecha = new Date().toLocaleDateString("es-ES", opciones);
 
-    fechadehoy.textContent = fecha.charAt(0).toUpperCase() + fecha.slice(1);
+				fechadehoy.textContent = fecha.charAt(0).toUpperCase() + fecha.slice(1);
 
 				// MODAL
 				const modal = document.getElementById("myModal");
 				const openBtn = document.querySelector(".open-modal");
 				const closeBtn = document.querySelector(".close");
 
-				// Verifica que la modal esté oculta al cargar la página
 				modal.style.display = "none";
 
-				// Evento para abrir la modal al hacer clic en el botón
 				openBtn.addEventListener("click", () => {
 					modal.style.display = "flex";
 				});
 
-				// Evento para cerrar la modal al hacer clic en el botón de cerrar
 				closeBtn.addEventListener("click", () => {
 					modal.style.display = "none";
 				});
 
-				// Evento para cerrar la modal si se hace clic fuera del contenido
 				window.addEventListener("click", (event) => {
 					if (event.target === modal) {
 						modal.style.display = "none";
 					}
 				});
-});
+			});
 		</script>
 	</body>
 </html>
